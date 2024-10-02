@@ -88,6 +88,8 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
+    printf("\n---------------------- Torudo Debug Output ----------------------\n\n");
+
     #if ENABLE_VERBOSE_LOGGING
     verbose_log("Starting Torudo version %s\n", VERSION);
     #endif
@@ -137,13 +139,12 @@ int main(int argc, char *argv[]) {
     #endif
 
     // Separate Torudo output from the command's output
-    printf("\n---------------------- Torudo is now executing your command ----------------------\n\n");
-
     // Default: run the command via Tor
     start_tor();
     setup_iptables();
-    run_command(&argv[1]);
 
+    printf("\n---------------------- Torudo is now executing your command ----------------------\n\n");
+    run_command(&argv[1]);
     printf("\n---------------------- End of command output ----------------------\n\n");
 
     #if ENABLE_PACKET_CAPTURER
